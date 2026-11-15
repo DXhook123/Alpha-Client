@@ -1,0 +1,20 @@
+#pragma once
+#include "Setting.h"
+
+class BoolSetting : public Setting {
+public:
+	bool* value;
+
+	float toggleAnim = 0.f;
+
+	BoolSetting(std::string settingName, std::string des, bool* ptr, bool defaultValue,
+		std::optional<std::function<bool(void)>> _dependOn = std::nullopt) {
+		this->name = settingName;
+		this->description = des;
+		this->value = ptr;
+		*this->value = defaultValue;
+		this->type = SettingType::BOOL_S;
+		this->dependOn = _dependOn;
+		toggleAnim = defaultValue ? 1.f : 0.f;
+	}
+};
